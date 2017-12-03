@@ -1,4 +1,3 @@
-#include <stdlib.h>
 #include "dlist.h"
 
 int main() {

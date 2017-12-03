@@ -3,5 +3,5 @@ project(l6)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES main.c dlist.c dlist.h list.c list.h)
+set(SOURCE_FILES main.c dlist.c)
 add_executable(l6 ${SOURCE_FILES})

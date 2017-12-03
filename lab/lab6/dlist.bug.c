@@ -29,8 +29,6 @@ static void list_iter_next(list_iter_t *it) {
     node_t *next;
     if (it->b == it->list->last) {
         next = it->list->zero;
-    } else if (it->a == it->list->zero) { // This bug worth 4 points
-        next = (node_t *) (it->b->pn);
     } else {
         next = (node_t *) (it->b->pn ^ (size_t) it->a);
     }
@@ -45,7 +43,7 @@ static void list_iter_init(const list_t *list, list_iter_t *it) {
 }
 
 static int list_iter_end(list_iter_t *it) {
-    return it->b == it->list->zero || it->list->length == 0; // This bug worth 3 points
+    return it->a == it->list->zero || it->list->length == 0;
 }
 
 static node_t *list_iter_get(list_iter_t *it) {
@@ -109,7 +107,7 @@ static node_t *list_append(list_t *list, const char *str, dlistValue data) {
     list->length++;
     if (list->last) {
         new_node->pn = (size_t) list->last;
-        list->last->pn ^= (size_t) new_node; // This bug worth 3 points
+        list->last->pn = (size_t) new_node;
     } else {
         new_node->pn = 0;
         list->first = new_node;
